@@ -1,21 +1,42 @@
-function abrirProjeto(url) {
-    window.open(url, "_blank");
-}
+/*!
+    * Start Bootstrap - Resume v6.0.2 (https://startbootstrap.com/theme/resume)
+    * Copyright 2013-2020 Start Bootstrap
+    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
+    */
+(function ($) {
+    "use strict"; // Start of use strict
 
-document.getElementById('formContato').addEventListener('submit', function (e) {
-    e.preventDefault();
+    // Smooth scrolling using jQuery easing
+    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+        if (
+            location.pathname.replace(/^\//, "") ==
+            this.pathname.replace(/^\//, "") &&
+            location.hostname == this.hostname
+        ) {
+            var target = $(this.hash);
+            target = target.length
+                ? target
+                : $("[name=" + this.hash.slice(1) + "]");
+            if (target.length) {
+                $("html, body").animate(
+                    {
+                        scrollTop: target.offset().top,
+                    },
+                    1000,
+                    "easeInOutExpo"
+                );
+                return false;
+            }
+        }
+    });
 
-    const nome = document.getElementById('nome').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const mensagem = document.getElementById('mensagem').value.trim();
+    // Closes responsive menu when a scroll trigger link is clicked
+    $(".js-scroll-trigger").click(function () {
+        $(".navbar-collapse").collapse("hide");
+    });
 
-    if (!nome || !email || !mensagem) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-    }
-
-    this.reset();
-    const resposta = document.getElementById('resposta');
-    resposta.textContent = Obrigado, ${nome}! Sua mensagem foi enviada com sucesso.;
-    resposta.style.color = 'green';
-});
+    // Activate scrollspy to add active class to navbar items on scroll
+    $("body").scrollspy({
+        target: "#sideNav",
+    });
+})(jQuery); // End of use strict
